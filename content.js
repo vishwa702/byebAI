@@ -76,16 +76,22 @@
   }
 
   function pageVideo() {
-    return document.querySelector('ytd-watch-flexy video, ytd-reel-video-renderer video, shorts-video video, video');
+    return document.querySelector(
+      'ytd-reel-video-renderer[is-active] video, ytd-watch-flexy video, shorts-video video, ytd-reel-video-renderer video, video'
+    );
   }
 
   function skipShort() {
     const nextBtn = document.querySelector(
-      '#navigation-button-down button, ytd-shorts [aria-label="Next video"], ytm-shorts [aria-label="Next video"]'
+      '#navigation-button-down button, ytd-shorts [aria-label="Next video"], ytm-shorts [aria-label="Next video"], button[aria-label="Next video"]'
     );
     if (nextBtn) {
       nextBtn.click();
       return;
+    }
+    const scroller = document.querySelector('ytd-shorts, #shorts-container');
+    if (scroller) {
+      scroller.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
     }
     window.dispatchEvent(
       new KeyboardEvent('keydown', {

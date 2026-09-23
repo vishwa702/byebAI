@@ -10,7 +10,7 @@ donateEl.href = DONATE_URL;
 function render(enabled, count) {
   toggle.checked = enabled;
   toggleLabel.textContent = enabled ? 'Enabled' : 'Disabled';
-  countEl.textContent = count;
+  countEl.textContent = Number(count).toLocaleString();
 }
 
 chrome.storage.local.get(['byebaiEnabled', 'byebaiBlockedCount'], (res) => {
@@ -27,6 +27,6 @@ toggle.addEventListener('change', () => {
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area !== 'local') return;
   if (changes.byebaiBlockedCount) {
-    countEl.textContent = changes.byebaiBlockedCount.newValue || 0;
+    countEl.textContent = Number(changes.byebaiBlockedCount.newValue || 0).toLocaleString();
   }
 });
