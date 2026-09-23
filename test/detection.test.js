@@ -73,7 +73,8 @@ test('getYouTubeContentId: watch vs shorts', () => {
 test('container list includes shorts-related hosts', () => {
   assert.ok(d.CONTAINER_SELECTORS.includes('ytd-reel-video-renderer'));
   assert.ok(d.CONTAINER_SELECTORS.includes('ytm-shorts-lockup-view-model'));
-  assert.equal(d.WATCH_SECTION_SELECTOR, 'how-this-was-made-section-view-model');
+  assert.ok(d.WATCH_SECTION_SELECTOR.includes('how-this-was-made-section-view-model'));
+  assert.ok(d.WATCH_SECTION_SELECTOR.includes('.ytwHowThisWasMadeSectionViewModelHost'));
 });
 
 test('isShortsPlayerContainer: distinguishes full-screen player from feed cards', () => {
@@ -98,7 +99,30 @@ test('isAIBadgeLabel: generated with ai and case-insensitivity', () => {
 test('isMadeWithAIDisclosureText: generated with ai and negative tests', () => {
   assert.equal(d.isMadeWithAIDisclosureText('Generated with AI'), true);
   assert.equal(d.isMadeWithAIDisclosureText('Sound and visuals altered with AI'), true);
+  assert.equal(d.isMadeWithAIDisclosureText('Sounds or visuals were altered or fully generated.'), true);
   assert.equal(d.isMadeWithAIDisclosureText('Synthesizer keyboard review in studio'), false);
   assert.equal(d.isMadeWithAIDisclosureText('Synthetic motor oil vs conventional oil'), false);
+});
+
+test('isMadeWithAIWatchSection: matches user Shorts structured description snippet', () => {
+  const section = {
+    querySelector(sel) {
+      if (sel.includes('BodyHeader')) {
+        return { textContent: 'Made with AI' };
+      }
+      return null;
+    },
+    textContent: 'How this was made Made with AI Sounds or visuals were altered or fully generated. Learn more'
+  };
+  assert.equal(d.isMadeWithAIWatchSection(section), true);
+
+  // Even if header query missed or returned null:
+  const sectionWithoutHeader = {
+    querySelector() {
+      return null;
+    },
+    textContent: 'How this was made Sounds or visuals were altered or fully generated. Learn more'
+  };
+  assert.equal(d.isMadeWithAIWatchSection(sectionWithoutHeader), true);
 });
 

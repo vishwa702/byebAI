@@ -199,11 +199,21 @@
     });
 
     const currentId = D.getYouTubeContentId(location.href);
-    collectMatches(root, D.WATCH_SECTION_SELECTOR).forEach((section) => {
+    const isShorts = D.isShortsPath(location.pathname);
+
+    const watchSections = collectMatches(root, D.WATCH_SECTION_SELECTOR);
+    if (root.closest) {
+      const ancestor = root.closest(D.WATCH_SECTION_SELECTOR);
+      if (ancestor && !watchSections.includes(ancestor)) {
+        watchSections.push(ancestor);
+      }
+    }
+
+    watchSections.forEach((section) => {
       if (checkedSectionIds.get(section) === currentId) return;
-      checkedSectionIds.set(section, currentId);
       if (D.isMadeWithAIWatchSection(section)) {
-        showWatchOverlay(false);
+        checkedSectionIds.set(section, currentId);
+        showWatchOverlay(isShorts);
       }
     });
   }
@@ -217,7 +227,17 @@
     if (!force && id === lastContentId) return;
     lastContentId = id;
     removeWatchOverlay();
-    if (enabled) scan(document);
+    if (enabled) {
+      scan(document);
+      // Engagement panels and structured descriptions often render 100-1500ms after navigation
+      [150, 400, 800, 1500].forEach((delay) => {
+        setTimeout(() => {
+          if (enabled && D.getYouTubeContentId(location.href) === id) {
+            scan(document);
+          }
+        }, delay);
+      });
+    }
   }
 
   let pendingNodes = new Set();
@@ -264,7 +284,14 @@
 
   function start() {
     lastContentId = D.getYouTubeContentId(location.href);
-    if (enabled) scan(document);
+    if (enabled) {
+      scan(document);
+      [150, 400, 800, 1500].forEach((delay) => {
+        setTimeout(() => {
+          if (enabled) scan(document);
+        }, delay);
+      });
+    }
     observer.observe(document.documentElement, {
       childList: true,
       subtree: true,
@@ -281,6 +308,14 @@
       document.addEventListener(evt, () => handleNavigation());
     });
     window.addEventListener('popstate', () => handleNavigation());
+
+    // Polling fallback to catch SPA navigation in Shorts carousel where events might be skipped
+    setInterval(() => {
+      const currentId = D.getYouTubeContentId(location.href);
+      if (currentId !== lastContentId) {
+        handleNavigation();
+      }
+    }, 200);
   }
 
   chrome.storage.local.get([STORAGE.enabled], (res) => {

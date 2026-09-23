@@ -20,7 +20,8 @@
     'reel-video-in-sequence-renderer'
   ];
 
-  const WATCH_SECTION_SELECTOR = 'how-this-was-made-section-view-model';
+  const WATCH_SECTION_SELECTOR =
+    'how-this-was-made-section-view-model, .ytwHowThisWasMadeSectionViewModelHost, [class*="HowThisWasMade"]';
   const BADGE_SELECTOR = 'badge-shape[aria-label]';
   const WATCH_HEADER_SELECTOR =
     '.ytwHowThisWasMadeSectionViewModelBodyHeader, [class*="BodyHeader"], [role="heading"]';
@@ -47,6 +48,8 @@
     if (/\bmade with ai\b/i.test(s)) return true;
     if (/\baltered with ai\b/i.test(s)) return true;
     if (/\bgenerated with ai\b/i.test(s)) return true;
+    if (/\baltered or (?:fully )?generated\b/i.test(s)) return true;
+    if (/\b(sounds?|visuals?|audio|video) (?:were|was) altered\b/i.test(s)) return true;
     if (/\baltered or synthetic(?: content)?\b/i.test(s)) return true;
     if (/\bsynthetic content\b/i.test(s) && /\b(ai|altered|generated)\b/i.test(s)) return true;
     return false;
@@ -56,8 +59,10 @@
     if (!section) return false;
     const header =
       section.querySelector && section.querySelector(WATCH_HEADER_SELECTOR);
-    const text = header ? header.textContent || '' : section.textContent || '';
-    return isMadeWithAIDisclosureText(text);
+    const headerText = header ? header.textContent || '' : '';
+    if (headerText && isMadeWithAIDisclosureText(headerText)) return true;
+    const fullText = section.textContent || '';
+    return isMadeWithAIDisclosureText(fullText);
   }
 
   function isShortsPlayerContainer(el) {
