@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>ByebAI</title>
+  <link rel="icon" type="image/png" href="icons/icon48.png" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>ByebAI</h1>
+    <p class="sub">Blocking YouTube videos labeled "Made with AI".</p>
+
+    <div class="row">
+      <label class="switch">
+        <input type="checkbox" id="toggle" />
+        <span class="slider"></span>
+      </label>
+      <span id="toggle-label">Enabled</span>
+    </div>
+
+    <div class="stat">
+      <span id="count">0</span>
+      <span class="stat-label">videos blocked</span>
+    </div>
+
+    <a id="donate" class="donate-btn" href="https://ko-fi.com/vish72" target="_blank" rel="noopener">
+      Support this project
+    </a>
+
+    <p class="footnote">Unofficial. Not affiliated with YouTube or Google.</p>
+    <p class="links">
+      <a id="privacy" href="privacy.html" target="_blank" rel="noopener">Privacy</a>
+    </p>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

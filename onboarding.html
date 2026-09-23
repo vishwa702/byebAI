@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Welcome to ByebAI</title>
+  <link rel="icon" type="image/png" href="icons/icon128.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Roboto", Arial, sans-serif;
+      background: #0f0f11;
+      color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+    }
+    .card {
+      max-width: 560px;
+      padding: 48px 32px;
+    }
+    h1 { font-size: 26px; margin-bottom: 4px; }
+    .sub { color: #aaa; margin-bottom: 28px; }
+    h2 { font-size: 16px; margin-top: 28px; }
+    p, li { font-size: 14px; line-height: 1.6; color: #ddd; }
+    .limits {
+      background: #18181b;
+      border: 1px solid #2a2a2e;
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .donate-btn {
+      display: inline-block;
+      margin-top: 24px;
+      background: #ffdd57;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 20px;
+    }
+    .footnote { font-size: 11px; color: #777; margin-top: 32px; }
+    a { color: #3ea6ff; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>ByebAI is set up</h1>
+    <p class="sub">It's already watching for YouTube's own "Made with AI" labels and hiding that content.</p>
+
+    <h2>What it does</h2>
+    <ul>
+      <li>Hides videos in feeds, search results, sidebars, and Shorts shelves that YouTube itself has labeled as made or altered with AI.</li>
+      <li>Blocks the watch page and Shorts player (with an option to override) when a video's "How this was made" panel says the same.</li>
+      <li>Runs entirely in your browser. No video data or browsing history leaves your machine. See the <a href="privacy.html">privacy policy</a>.</li>
+    </ul>
+
+    <h2 class="limits-title">Known limitations</h2>
+    <div class="limits">
+      <p style="margin:0 0 8px;"><strong>Only catches what YouTube itself discloses.</strong> Undisclosed AI content is invisible to this extension by design; there is no independent detection happening.</p>
+      <p style="margin:0 0 8px;"><strong>English UI only, for now.</strong> Detection reads label text, which YouTube localizes, so non-English interfaces won't be caught yet.</p>
+      <p style="margin:0;"><strong>YouTube's markup changes.</strong> If detection suddenly stops working, it likely needs an update to match a redesign.</p>
+    </div>
+
+    <p style="margin-top: 24px;">This is a free, independent project. If it's useful to you, a donation helps cover the time spent keeping it working as YouTube changes.</p>
+    <a class="donate-btn" href="https://ko-fi.com/vish72" target="_blank" rel="noopener">Support this project</a>
+
+    <p class="footnote">ByebAI is unofficial and not affiliated with, endorsed by, or sponsored by YouTube or Google. YouTube is a trademark of Google LLC.</p>
+  </div>
+</body>
+</html>

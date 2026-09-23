@@ -1,0 +1,10 @@
+{
+  "name": "byebai",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Chrome extension that hides YouTube videos labeled Made with AI.",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "pack": "node scripts/pack.mjs"
+  }
+}

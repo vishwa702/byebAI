@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — ByebAI</title>
+  <link rel="icon" type="image/png" href="icons/icon128.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Roboto", Arial, sans-serif;
+      background: #0f0f11;
+      color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+    }
+    .card {
+      max-width: 640px;
+      padding: 48px 32px;
+    }
+    h1 { font-size: 26px; margin-bottom: 4px; }
+    .sub { color: #aaa; margin-bottom: 28px; }
+    h2 { font-size: 16px; margin-top: 28px; }
+    p, li { font-size: 14px; line-height: 1.6; color: #ddd; }
+    .footnote { font-size: 11px; color: #777; margin-top: 32px; }
+    a { color: #3ea6ff; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Privacy Policy</h1>
+    <p class="sub">ByebAI — AI Content Blocker for YouTube™ · Last updated 23 September 2026</p>
+
+    <p>ByebAI runs entirely on your device. It does not operate a backend, does not require an account, and does not send your browsing history, video titles, watch activity, or YouTube page contents to the developer or to any other party.</p>
+
+    <h2>Data stored on your device</h2>
+    <p>The extension uses Chrome’s local storage (<code>chrome.storage.local</code>) for:</p>
+    <ul>
+      <li>an on/off setting (whether blocking is enabled), and</li>
+      <li>a running count of items hidden on this browser profile.</li>
+    </ul>
+    <p>That data stays in your browser profile. It is not uploaded, synced by this extension to a developer server, or used for advertising. You can clear it by removing the extension or clearing site/extension data in Chrome.</p>
+
+    <h2>What the extension reads on YouTube</h2>
+    <p>While you are on YouTube, the content script inspects the page DOM for YouTube’s own “Made with AI” / “Altered with AI” labels so matching videos can be hidden or blocked. That inspection happens in your browser only. The extension does not independently classify video pixels or audio, and it does not contact YouTube APIs with your credentials.</p>
+
+    <h2>Permissions</h2>
+    <p>ByebAI requests the <code>storage</code> permission for the settings above. It injects a content script only on YouTube hostnames declared in the manifest. No other host permissions are used.</p>
+
+    <h2>Third-party links</h2>
+    <p>Optional “Support this project” links open Ko-fi in a new tab. If you follow that link, Ko-fi’s own privacy policy applies to that visit. The extension does not transmit data to Ko-fi automatically.</p>
+
+    <h2>Children</h2>
+    <p>The extension is not directed at children and does not knowingly collect personal information from anyone, including children.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the “Last updated” date above will change. Material changes that affect data handling would also be reflected in the Chrome Web Store privacy practices form.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy: use the support / contact channel listed on the Chrome Web Store listing for ByebAI, or the repository associated with this project.</p>
+
+    <p class="footnote">YouTube is a trademark of Google LLC. ByebAI is unofficial and is not affiliated with, endorsed by, or sponsored by YouTube or Google.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+#byebai-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  background: rgba(15, 15, 17, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.byebai-overlay-box {
+  max-width: 420px;
+  text-align: center;
+  color: #f1f1f1;
+  padding: 32px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  background: #18181b;
+}
+
+.byebai-overlay-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #ff6b6b;
+}
+
+.byebai-overlay-body {
+  font-size: 14px;
+  color: #ccc;
+  margin: 0 0 20px;
+}
+
+.byebai-overlay-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.byebai-overlay-actions button {
+  cursor: pointer;
+  border: none;
+  border-radius: 18px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+#byebai-back {
+  background: #3ea6ff;
+  color: #0f0f11;
+}
+
+#byebai-watch-anyway {
+  background: #303030;
+  color: #f1f1f1;
+}
